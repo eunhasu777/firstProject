@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.FreeBoardMapper">
+	<select id="selectAll" resultType="freeBoardVO">
+		SELECT
+			BOARD_ID
+			, WRITER
+			, TITLE
+			, CONTENT
+			, UPDATE
+		FROM 
+			TEST.BOARD
+	</select>
+	<update id="updateBoard" parameterType="FreeBoardVO">
+		INSERT INTO TEST.BOARD
+			(BOARD_ID, WRITER, TITLE, CONTENT, UPDATE
+		) VALUES (
+			NEXTVAL('TEST.TB_BOARD')
+			, #{writer}
+			, #{title}
+			, #{content}
+			, now()
+		) 
+	</update>
+	
+</mapper>
